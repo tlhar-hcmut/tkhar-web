@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@mediapipe/camera_utils": "^0.3.1620247984",
+    "@mediapipe/control_utils": "^0.5.1623725837",
+    "@mediapipe/drawing_utils": "^0.3.1620248257",
     "@mediapipe/pose": "^0.4.1624666670",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",

@@ -1,25 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
+import MPose from '@mediapipe/pose';
 import './App.css';
 
-function App() {
+const App: React.FC = () => {
+  const pose: MPose.Pose = new MPose.Pose({
+    locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/pose@0.4.1624666670/${file}`
+  });
+
+  console.log(pose)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <p>Hi</p>
   );
 }
 
