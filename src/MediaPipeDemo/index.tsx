@@ -1,7 +1,6 @@
 import MCamera from '@mediapipe/camera_utils'
 import MDrawing from '@mediapipe/drawing_utils'
 import MPose from '@mediapipe/pose'
-import { Card } from 'antd'
 import React, { useEffect, useRef } from 'react'
 import Webcam from 'react-webcam'
 
@@ -52,10 +51,10 @@ const App: React.FC = () => {
         if (video != null) new MCamera.Camera(video, { onFrame: async () => await pose.send({ image: video }) }).start()
     }, [])
 
-    return <Card title="MediaPipe Demo" style={{ height: 640, textAlign: "center" }}>
+    return <div style={{ textAlign: 'center' }}>
         <Webcam ref={refWebcam} hidden={true} />
         <canvas ref={refCanvas} style={{ height: 500 }} />
-    </Card>
+    </div>
 
 }
 
