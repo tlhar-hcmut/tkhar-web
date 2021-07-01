@@ -1,6 +1,8 @@
 import { Collapse } from 'antd';
 import React, { useEffect } from 'react';
 import MediaPipeDemo from "src/MediaPipeDemo";
+import UploadDemo from "src/UploadDemo";
+import WebcamDemo from "src/WebcamDemo";
 
 const App: React.FC = () => {
 
@@ -9,15 +11,15 @@ const App: React.FC = () => {
   }, []);
 
   return <>
-    <Collapse defaultActiveKey={['1']}>
+    <Collapse>
       <Collapse.Panel header="Mediapipe Demo" key="1">
         <MediaPipeDemo />
       </Collapse.Panel>
       <Collapse.Panel header="Upload Demo" key="2">
-        <p>ahaha</p>
+        <UploadDemo />
       </Collapse.Panel>
       <Collapse.Panel header="Webcam Demo" key="3">
-        <p>ahaha</p>
+        <WebcamDemo />
       </Collapse.Panel>
     </Collapse>
   </>
