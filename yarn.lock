@@ -1406,6 +1406,11 @@
   resolved "https://registry.yarnpkg.com/@mediapipe/control_utils/-/control_utils-0.5.1623725837.tgz#4b673c31a5585f88835318b812082bfea80bacda"
   integrity sha512-E2bAiRLzx9auPHb9iV+DpLphAACzgU0HXPLwS0d6q25pl7tRyyEUTwqY/h929AvX4sCcbFyDwwYHPY5VdLZByA==
 
+"@mediapipe/control_utils_3d@^0.1.1624665424":
+  version "0.1.1624665424"
+  resolved "https://registry.yarnpkg.com/@mediapipe/control_utils_3d/-/control_utils_3d-0.1.1624665424.tgz#48fe13260f806b7649cae65938e4fa45bf1bfcac"
+  integrity sha512-1fhwXwWbjDUUHrBHdfHCcasEKq/1NwiXQtRqU2PI9Tikfs5IYfmsedC83IuiedJIOzX8shrYOTfgQH31E8WzPQ==
+
 "@mediapipe/drawing_utils@^0.3.1620248257":
   version "0.3.1620248257"
   resolved "https://registry.yarnpkg.com/@mediapipe/drawing_utils/-/drawing_utils-0.3.1620248257.tgz#b39dfd235e7cf520e3e39d8b2bac2c5d717a7158"
