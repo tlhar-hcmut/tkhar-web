@@ -1,14 +1,29 @@
 import { UploadOutlined } from '@ant-design/icons';
+import MPose, { InputImage } from '@mediapipe/pose';
 import { Button, Col, Row, Upload } from 'antd';
 import React, { useEffect, useState } from 'react';
-import SkeletonVideo from 'src/components/SkeletonVideo';
+
 
 const App: React.FC = () => {
     const [video, setVideo] = useState<HTMLVideoElement | null>();
     const [videoFile, setVideoFile] = useState<File>();
 
     useEffect(() => {
-        console.info(video)
+        const path = "https://cdn.jsdelivr.net/npm/@mediapipe/pose@0.4.1624666670/"
+        const pose: MPose.Pose = new MPose.Pose({ locateFile: (file) => `${path}/${file}` })
+
+        pose.setOptions({
+            modelComplexity: 1,
+            smoothLandmarks: true,
+            minDetectionConfidence: 0.5,
+            minTrackingConfidence: 0.5,
+        })
+
+        pose.onResults((results) => {
+            console.log(results)
+        })
+
+        if (video) pose.send({ image: video as InputImage })
     })
     return <Row>
         <Col span={8}>
@@ -27,7 +42,7 @@ const App: React.FC = () => {
             {videoFile ? <video ref={setVideo} width="400" controls><source src={URL.createObjectURL(videoFile)} /></video> : <></>}
         </Col>
         <Col span={8}>
-            <SkeletonVideo video={video}></SkeletonVideo>
+            <p>Skeleton will show here!</p>
         </Col >
     </Row >
 }
