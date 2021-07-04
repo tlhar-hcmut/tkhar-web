@@ -2,15 +2,16 @@ import MCamera from '@mediapipe/camera_utils'
 import MDrawing from '@mediapipe/drawing_utils'
 import MPose from '@mediapipe/pose'
 import React, { useEffect, useRef } from 'react'
-import Webcam from 'react-webcam'
 
-const App: React.FC = () => {
-    const refWebcam = useRef<Webcam>(null)
+export interface PropSkeletonVideo {
+    video: HTMLVideoElement | null | undefined
+}
+
+const App: React.FC<PropSkeletonVideo> = ({ video }) => {
+
     const refCanvas = useRef<HTMLCanvasElement>(null)
 
     useEffect(() => {
-        document.title = "TK-HAR"
-        const video = refWebcam.current?.video
         const path = "https://cdn.jsdelivr.net/npm/@mediapipe/pose@0.4.1624666670/"
         const pose: MPose.Pose = new MPose.Pose({ locateFile: (file) => `${path}/${file}` })
 
@@ -22,6 +23,7 @@ const App: React.FC = () => {
         })
 
         pose.onResults((results) => {
+            console.info("yeah")
             const canvasElement = refCanvas.current
             if (canvasElement == null) return
             const canvasCtx = canvasElement.getContext("2d")
@@ -49,13 +51,10 @@ const App: React.FC = () => {
             canvasCtx.restore()
         })
         if (video != null) new MCamera.Camera(video, { onFrame: async () => await pose.send({ image: video }) }).start()
-    }, [])
+    })
 
-    return <div style={{ textAlign: 'center' }}>
-        <Webcam ref={refWebcam} hidden={true} />
-        <canvas ref={refCanvas} style={{ height: 500 }} />
-    </div>
-
+    if (!video) return <>Loading ...</>;
+    return <canvas ref={refCanvas} style={{ height: 500 }} />
 }
 
 export default App

@@ -1,8 +1,8 @@
 import { Collapse } from 'antd';
 import React, { useEffect } from 'react';
-import MediaPipeDemo from "src/MediaPipeDemo";
-import UploadDemo from "src/UploadDemo";
-import WebcamDemo from "src/WebcamDemo";
+import MediaPipeDemo from "src/pages/DemoMediaPipe";
+import UploadDemo from "src/pages/DemoUpload";
+import WebcamDemo from "src/pages/DemoWebcam";
 
 const App: React.FC = () => {
 
