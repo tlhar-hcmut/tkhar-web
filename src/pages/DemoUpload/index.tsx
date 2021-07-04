@@ -1,32 +1,26 @@
 import { UploadOutlined } from '@ant-design/icons';
+import * as skeleton from "src/util/skeleton";
 import MPose, { NormalizedLandmarkList } from '@mediapipe/pose';
 import { Button, Col, Descriptions, Row, Upload } from 'antd';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { HarRes } from 'src/entity/response';
 
 const lsSkeleton: NormalizedLandmarkList[] = []
 
 const App: React.FC = () => {
+    const [output, setOutput] = useState<HarRes>();
     const [urlVideo, setUrlVideo] = useState<string>();
     const [refVideo, setRefVideo] = useState<HTMLVideoElement | null>();
-    const [output, setOutput] = useState<HarRes>();
+    const refCanvas = useRef<HTMLCanvasElement>(null)
 
     useEffect(() => {
         if (!refVideo) return;
-
-        const path = "https://cdn.jsdelivr.net/npm/@mediapipe/pose@0.4.1624666670/"
-        const pose: MPose.Pose = new MPose.Pose({ locateFile: (file) => `${path}/${file}` })
-
-        pose.setOptions({
-            modelComplexity: 1,
-            smoothLandmarks: true,
-            minDetectionConfidence: 0.5,
-            minTrackingConfidence: 0.5,
+        const pose: MPose.Pose = skeleton.initModelPose()
+        pose.onResults((results) => {
+            lsSkeleton.push(results.poseWorldLandmarks)
+            skeleton.drawSkeleton(refCanvas?.current, results)
         })
-
-        pose.onResults((results) => { lsSkeleton.push(results.poseWorldLandmarks) })
-
         refVideo.addEventListener("play", async () => {
             while (true) {
                 if (refVideo.paused || refVideo.ended) {
@@ -66,10 +60,10 @@ const App: React.FC = () => {
             </Descriptions>
         </Col>
         <Col span={8}>
-            {urlVideo ? <video ref={setRefVideo} width="400" controls><source src={urlVideo} /></video> : <></>}
+            {urlVideo ? <video ref={setRefVideo} width="500" controls><source src={urlVideo} /></video> : <></>}
         </Col>
         <Col span={8}>
-            
+            <canvas ref={refCanvas} style={{ width: 555 }} />
         </Col >
     </Row >
 }
