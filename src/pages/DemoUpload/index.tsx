@@ -1,10 +1,10 @@
 import { UploadOutlined } from '@ant-design/icons';
-import * as skeleton from "src/util/skeleton";
 import MPose, { NormalizedLandmarkList } from '@mediapipe/pose';
-import { Button, Col, Descriptions, Row, Upload } from 'antd';
+import { Button, Col, Row, Table, Upload } from 'antd';
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
-import { HarRes } from 'src/entity/response';
+import { Action, HarRes } from 'src/entity/response';
+import * as skeleton from "src/util/skeleton";
 
 const lsSkeleton: NormalizedLandmarkList[] = []
 
@@ -53,17 +53,31 @@ const App: React.FC = () => {
                 Add video at here, and see your result <Button icon={<UploadOutlined />}>Upload</Button>
             </Upload>
 
-            <Descriptions title="Output" bordered={true} column={1}>
-                <Descriptions.Item label="Action ID">{output?.idAction}</Descriptions.Item>
-                <Descriptions.Item label="Action Name">{output?.nameAction}</Descriptions.Item>
-                <Descriptions.Item label="Model Version">{output?.version}</Descriptions.Item>
-            </Descriptions>
+            <Table dataSource={output?.predict} columns={[
+                {
+                    title: 'ID',
+                    dataIndex: 'id',
+                    key: 'id',
+                },
+                {
+                    title: 'Action',
+                    dataIndex: 'action',
+                    key: 'action',
+                },
+                {
+                    title: 'Confidence',
+                    dataIndex: 'confidence',
+                    key: 'confidence',
+                    sorter: (a: Action, b: Action) => a.confidence - b.confidence,
+                    defaultSortOrder: 'descend',
+                },
+            ]} />
         </Col>
         <Col span={8}>
             {urlVideo ? <video ref={setRefVideo} width="500" controls><source src={urlVideo} /></video> : <></>}
         </Col>
         <Col span={8}>
-            <canvas ref={refCanvas} style={{ width: 555 }} />
+            <canvas ref={refCanvas} style={{ width: 555, height: 880 }} />
         </Col >
     </Row >
 }

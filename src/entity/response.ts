@@ -1,5 +1,11 @@
+export interface Action {
+    id: number
+    action: string
+    confidence: number
+}
+
 export interface HarRes {
-    idAction: number
-    nameAction: string
+    predict: Action[]
     version: string
 }
+
