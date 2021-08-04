@@ -31,7 +31,7 @@ const App: React.FC = () => {
                     break
                 };
                 pose.send({ image: refVideo })
-                await new Promise(r => setTimeout(r, 1000));
+                await new Promise(r => setTimeout(r, 100));
             }
 
         }, false)
@@ -53,7 +53,7 @@ const App: React.FC = () => {
                 Add video at here, and see your result <Button icon={<UploadOutlined />}>Upload</Button>
             </Upload>
 
-            <Table dataSource={output?.predict} columns={[
+            <Table pagination={{ pageSize: 12 }} dataSource={output?.predict} columns={[
                 {
                     title: 'ID',
                     dataIndex: 'id',
@@ -65,7 +65,7 @@ const App: React.FC = () => {
                     key: 'action',
                 },
                 {
-                    title: 'Confidence',
+                    title: 'Confidence (%)',
                     dataIndex: 'confidence',
                     key: 'confidence',
                     sorter: (a: Action, b: Action) => a.confidence - b.confidence,

@@ -29,6 +29,8 @@
   color: #61dafb;
 }
 
+.ant-table table { font-size: 21px; }
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
