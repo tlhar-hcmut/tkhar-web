@@ -1,1 +1,1 @@
-rsync -aurv . tkhar@20.205.205.211:/home/tkhar/tkhar-web --exclude='node_modules'
+sshpass -p "Aa@123456789" rsync -aurv . tkhar@20.205.205.211:/home/tkhar/tkhar-web --exclude='node_modules'
