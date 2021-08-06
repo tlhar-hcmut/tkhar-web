@@ -11,9 +11,9 @@ const App: React.FC = () => {
 
   return <>
     <Collapse>
-      {/* <Collapse.Panel header="Mediapipe Demo" key="1">
+      <Collapse.Panel header="Mediapipe Demo" key="1">
         <MediaPipeDemo />
-      </Collapse.Panel> */}
+      </Collapse.Panel>
       <Collapse.Panel header="Upload Demo" key="2">
         <UploadDemo />
       </Collapse.Panel>
