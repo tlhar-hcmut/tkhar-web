@@ -3,13 +3,13 @@ import MPose, { NormalizedLandmarkList } from '@mediapipe/pose';
 import { Button, Col, Row, Table, Upload } from 'antd';
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
-import { Action, HarRes } from 'src/entity/response';
+import { Action } from 'src/entity/response';
 import * as skeleton from "src/util/skeleton";
 
 const lsSkeleton: NormalizedLandmarkList[] = []
 
 const App: React.FC = () => {
-    const [output, setOutput] = useState<HarRes>();
+    const [output, setOutput] = useState<Action[]>();
     const [urlVideo, setUrlVideo] = useState<string>();
     const [refVideo, setRefVideo] = useState<HTMLVideoElement | null>();
     const refCanvas = useRef<HTMLCanvasElement>(null)
@@ -24,8 +24,8 @@ const App: React.FC = () => {
         refVideo.addEventListener("play", async () => {
             while (true) {
                 if (refVideo.paused || refVideo.ended) {
-                    axios.post("http://localhost:8000/har", { data: lsSkeleton })
-                        .then((res) => setOutput(res.data["data"]))
+                    axios.post("http://20.205.205.211:8000/har", { data: lsSkeleton })
+                        .then((res) => setOutput(res.data))
                         .catch((err) => console.error(err))
                     lsSkeleton.length = 0
                     break
@@ -53,7 +53,7 @@ const App: React.FC = () => {
                 Add video at here, and see your result <Button icon={<UploadOutlined />}>Upload</Button>
             </Upload>
 
-            <Table pagination={{ pageSize: 12 }} dataSource={output?.predict} columns={[
+            <Table pagination={{ pageSize: 12 }} dataSource={output} columns={[
                 {
                     title: 'ID',
                     dataIndex: 'id',
