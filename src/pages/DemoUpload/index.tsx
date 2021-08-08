@@ -24,14 +24,15 @@ const App: React.FC = () => {
         refVideo.addEventListener("play", async () => {
             while (true) {
                 if (refVideo.paused || refVideo.ended) {
-                    axios.post("http://localhost:8000/har", { data: lsSkeleton })
+                    console.log(lsSkeleton)
+                    axios.post("http://20.205.205.211:8000/har", { data: lsSkeleton })
                         .then((res) => setOutput(res.data))
                         .catch((err) => console.error(err))
                     lsSkeleton.length = 0
                     break
                 };
                 pose.send({ image: refVideo })
-                await new Promise(r => setTimeout(r, 100));
+                await new Promise(r => setTimeout(r, 500));
             }
 
         }, false)
