@@ -7,7 +7,7 @@
     "@mediapipe/control_utils": "^0.5.1623725837",
     "@mediapipe/control_utils_3d": "^0.1.1624665424",
     "@mediapipe/drawing_utils": "^0.3.1620248257",
-    "@mediapipe/pose": "^0.4.1624666670",
+    "@mediapipe/pose": "^0.4.1627343400",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",

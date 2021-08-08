@@ -2,8 +2,8 @@ import MDrawing from "@mediapipe/drawing_utils";
 import MPose, { Results } from "@mediapipe/pose";
 
 export const initModelPose = (): MPose.Pose => {
-    // const path = "https://cdn.jsdelivr.net/npm/@mediapipe/pose@0.4.1624666670"
-    const path = "http://20.205.205.211:8000/static"
+    const path = "https://cdn.jsdelivr.net/npm/@mediapipe/pose@0.4.1627343400"
+    // const path = "http://20.205.205.211:8000/static"
     const pose: MPose.Pose = new MPose.Pose({ locateFile: (file) => `${path}/${file}` })
 
     pose.setOptions({

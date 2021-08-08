@@ -32,7 +32,7 @@ const App: React.FC = () => {
                     break
                 };
                 pose.send({ image: refVideo })
-                await new Promise(r => setTimeout(r, 250));
+                await new Promise(r => setTimeout(r, 1000));
             }
 
         }, false)
