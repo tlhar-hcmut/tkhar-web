@@ -3,3 +3,9 @@ export interface Action {
     action: string
     confidence: number
 }
+
+export interface HarResponse {
+    code: number
+    message: string
+    data: Action[]
+}
