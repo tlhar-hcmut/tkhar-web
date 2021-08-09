@@ -1,4 +1,4 @@
-import { Button, Collapse, Modal } from 'antd';
+import { Button, Modal } from 'antd';
 import React, { useEffect, useState } from 'react';
 // import MediaPipeDemo from "src/pages/DemoMediaPipe";
 // import UploadSkeletonDemo from "src/pages/DemoUploadSkeleton";
@@ -25,14 +25,16 @@ const App: React.FC = () => {
 
   return (
     <>
-      <div className="header">
+      <div className="header" style={{
+        marginBottom: 50
+      }}>
         <h1
           style={{
             textAlign: "center",
             fontFamily: "Trocchi",
             color: "#7c795d",
             fontSize: "50px",
-            fontWeight: 400,
+            fontWeight: 400
           }}
         >
           Human Action Recognition Application
@@ -45,21 +47,7 @@ const App: React.FC = () => {
         </div>
       </div>
 
-      <Collapse defaultActiveKey="3">
-        {/* <Collapse.Panel header="Mediapipe Demo" key="1" style={{fontSize:"15px"}}>
-        <MediaPipeDemo />
-      </Collapse.Panel>
-      <Collapse.Panel header="Upload Skeleton Demo" key="2" style={{fontSize:"15px"}}>
-        <UploadSkeletonDemo />
-      </Collapse.Panel> */}
-        <Collapse.Panel
-          header="Upload Video Demo"
-          key="3"
-          style={{ fontSize: "20px" }}
-        >
-          <UploadVideoDemo />
-        </Collapse.Panel>
-      </Collapse>
+      <UploadVideoDemo />
 
       {/* Modal */}
       <Modal
@@ -81,6 +69,7 @@ const App: React.FC = () => {
           <a
             href="https://drive.google.com/drive/folders/1BRrJaN3NcO5ujfmO5AuRqjBYHyrQbw9c?usp=sharing"
             target="_blank"
+            rel="noreferrer"
           >
             {"  "} video_actions.
           </a>

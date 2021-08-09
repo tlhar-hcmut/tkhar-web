@@ -1,4 +1,5 @@
 export interface Action {
+    key: number
     id: number
     action: string
     confidence: number
